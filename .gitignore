@@ -1,0 +1,77 @@
+# .gitignore para proyecto Flask
+
+# --------------------------------------
+# Entornos virtuales y variables de entorno
+# --------------------------------------
+.venv/
+venv/
+env/
+ENV/
+.env
+
+# --------------------------------------
+# Archivos generados por Python
+# --------------------------------------
+__pycache__/
+*.py[cod]
+*.egg-info
+*.log
+*.pot
+*.pyc
+*.pyo
+*.pyd
+
+# --------------------------------------
+# Entornos y dependencias
+# --------------------------------------
+pip-selfcheck.json
+PyPI/
+build/
+dist/
+*.egg
+
+# --------------------------------------
+# Configuración de IDE y editor
+# --------------------------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-*
+.DS_Store
+
+# --------------------------------------
+# Archivos de base de datos y caché
+# --------------------------------------
+instance/  # Carpeta de instancia de Flask
+*.db
+*.sqlite
+*.sql
+.cache
+.pytest_cache/
+
+# --------------------------------------
+# Archivos temporales y de desarrollo
+# --------------------------------------
+temp/
+tmp/
+*.tmp
+*.bak
+*.backup
+
+# --------------------------------------
+# Archivos específicos del proyecto
+# --------------------------------------
+# Si usas Jupyter o notebooks:
+*.ipynb_checkpoints
+
+# --------------------------------------
+# Archivos estáticos compilados (si usas SASS/LESS)
+# --------------------------------------
+static/css/*.css.map
+static/js/*.min.js
+
+# --------------------------------------
+# Paquetes de dependencias (si usas node.js)
+# --------------------------------------
+node_modules/
