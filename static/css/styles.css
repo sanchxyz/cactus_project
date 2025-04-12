@@ -127,7 +127,7 @@ body {
     /* Fondo translúcido para glassmorphism */
     backdrop-filter: blur(10px);
     /* Desenfoque para efecto glass */
-    border-radius: 8px;
+    border-radius: 16px;
     /* Radio fijo reducido: ni tan redondeado ni demasiado cuadrado */
     display: flex;
     /* Flex para distribuir los ítems */
@@ -156,22 +156,30 @@ body {
 /* Estilos para los enlaces dentro del menú */
 .menu-container nav ul li a {
     color: #7ab67b;
-    /* Color verde característico */
     font-size: 1.1rem;
-    padding: 10px;
-    /* Espaciado interno */
-    border-radius: 5px;
-    /* Pequeñas esquinas redondeadas */
+    padding: 0;
+    /* Elimina el padding que creaba el área rectangular */
     background: transparent;
-    /* Sin fondo propio, para integrarse con el contenedor */
     text-decoration: none;
-    transition: box-shadow 0.3s ease;
-    /* Transición para el efecto hover */
+    transition: text-shadow 0.3s ease;
+    /* Cambia a transición de text-shadow */
+    display: inline-block;
+    /* Mejor control sobre el elemento */
 }
 
-/* Efecto hover: glow de luz amarilla tenue */
+/* Efecto hover: Glow SOLO en el texto */
 .menu-container nav ul li a:hover {
-    box-shadow: 0 0 15px rgba(255, 255, 0, 0.6);
+    text-shadow:
+        0 0 15px rgba(255, 255, 0, 0.9),
+        /* Capa 1: Brillo intenso cerca del texto */
+        0 0 30px rgba(255, 255, 0, 0.7),
+        /* Capa 2: Glow intermedio */
+        0 0 50px rgba(255, 255, 0, 0.5),
+        /* Capa 3: Resplandor amplio */
+        0 0 70px rgba(255, 235, 0, 0.3);
+    /* Capa 4: Halos exteriores sutiles */
+    transition: text-shadow 0.4s ease;
+    /* Transición más suave */
 }
 
 /* ------------------------- */
