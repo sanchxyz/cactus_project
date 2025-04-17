@@ -3,6 +3,7 @@ from config import Config          # Configuración de la aplicación (variables
 from extensions import db, login_manager  # Extensiones: SQLAlchemy (BD) y LoginManager (autenticación)
 from routes import main            # Blueprint con rutas principales (ej: página de inicio)
 from models import User            # Modelo de usuario para la autenticación
+from routes import auth_bp, admin_bp  # Blueprints para autenticación y administración
 
 def create_app():
     """Factory function para crear y configurar la instancia de la aplicación Flask."""
@@ -23,7 +24,8 @@ def create_app():
     
     # Registrar blueprints (rutas)
     app.register_blueprint(main)    # Registra las rutas definidas en el blueprint 'main'
-    
+    app.register_blueprint(auth_bp)  # Registra las rutas de autenticación
+    app.register_blueprint(admin_bp) # Registra las rutas de administración
     return app
 
 if __name__ == '__main__':

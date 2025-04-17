@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - Cactus Camila</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body>
+    <div class="login-main-container">
+        <div class="glass-login-box">
+            <!-- Logo superior -->
+            <div class="login-logo">
+                <img src="{{ url_for('static', filename='images/logo_Cc.webp') }}" alt="Logo Cactus Camila">
+            </div>
+
+            <!-- Formulario de registro -->
+            <form class="login-form" id="registerForm">
+                <div class="form-group">
+                    <input type="text" placeholder="Nombre de usuario" required class="glass-input" name="username"
+                        pattern="[A-Za-z0-9]{4,20}" title="4-20 caracteres (solo letras y números)">
+                </div>
+
+                <div class="form-group">
+                    <input type="password" placeholder="Contraseña" required class="glass-input" name="password"
+                        minlength="8" title="Mínimo 8 caracteres">
+                </div>
+
+                <div class="form-group">
+                    <input type="password" placeholder="Confirmar contraseña" required class="glass-input"
+                        name="confirm_password">
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" class="glass-button register-btn">Crear cuenta</button>
+
+                    <!-- Contenedor para botones en línea -->
+                    <div class="inline-button-group">
+                        <a href="/auth/login" class="glass-button">¿Ya tienes cuenta?</a>
+                        <a href="/" class="glass-button home-btn">Home</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Validación básica de contraseña -->
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function (e) {
+            const password = document.querySelector('input[name="password"]').value;
+            const confirmPassword = document.querySelector('input[name="confirm_password"]').value;
+
+            if (password !== confirmPassword) {
+                e.preventDefault();
+                alert('Las contraseñas no coinciden');
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -2,62 +2,44 @@
 <html lang="es">
 
 <head>
+    <!-- Mismo head que index.html -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Cactus Camila</title>
-    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
-    <link rel="stylesheet" href="/static/css/estilos.css">
-    <link rel="stylesheet" href="/static/css/login.css"> <!-- Nuevo archivo CSS para el login -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 
 <body>
-    <header>
-        <div class="logo">
-            <img src="/static/images/logo_Cc.webp" alt="Cactus Camila">
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#"><span class="text">C A C T U S</span><img class="icon-img"
-                            src="/static/images/cactus.webp" alt="Cactus"></a></li>
-                <li><a href="#"><span class="text">S U C U L E N T A S</span><img class="icon-img"
-                            src="/static/images/suculentas.webp" alt="Suculentas"></a></li>
-                <li><a href="#"><span class="text">O T R O S</span><img class="icon-img" src="/static/images/otros.webp"
-                            alt="Otros"></a></li>
-                <li class="icon">
-                    <a href="{{ url_for('login') }}">
-                        <img src="/static/images/persona.webp" alt="Iniciar Sesión">
-                    </a>
-                </li>
-                <li class="icon">
-                    <a href="{{ url_for('home') }}">
-                        <img src="/static/images/home.webp" alt="Inicio">
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </header>
+    <div class="login-main-container">
+        <!-- Contenedor de vidrio para el formulario -->
+        <div class="glass-login-box">
+            <!-- Logo superior -->
+            <div class="login-logo">
+                <img src="{{ url_for('static', filename='images/logo_Cc.webp') }}" alt="Logo Cactus Camila">
+            </div>
 
-    <div class="login-container">
-        <div class="login-card">
-            <h2>Iniciar Sesión</h2>
-            <form action="#" method="post">
-                <div class="input-group">
-                    <label for="username">Usuario</label>
-                    <input type="text" id="username" name="username" required>
+            <!-- Formulario -->
+            <form class="login-form">
+                <div class="form-group">
+                    <input type="email" placeholder="Correo electrónico" required class="glass-input">
                 </div>
-                <div class="input-group">
-                    <label for="password">Contraseña</label>
-                    <input type="password" id="password" name="password" required>
+                <div class="form-group">
+                    <input type="password" placeholder="Contraseña" required class="glass-input">
                 </div>
-                <button type="submit">Ingresar</button>
+
+                <!-- Botones -->
+                <div class="button-group">
+                    <button type="submit" class="glass-button login-btn">I N G R E S A R</button>
+
+                    <!-- Contenedor especial para botones en línea -->
+                    <div class="inline-button-group">
+                        <a href="/" class="glass-button home-btn">H O M E </a>
+                        <a href="/auth/register" class="glass-button register-btn">R E G I S T R A R S E</a>
+                    </div>
+                </div>
             </form>
-            <p>¿No tienes una cuenta? <a href="#">Regístrate</a></p>
         </div>
     </div>
-
-    <footer>
-        <p>&copy; 2025 Cactus Camila. Todos los derechos reservados.</p>
-    </footer>
 </body>
 
 </html>

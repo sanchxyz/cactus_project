@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Catálogo de plantas y artículos de jardinería" />
+    <meta name="keywords" content="cactus, suculentas, jardinería, vivero, plantas" />
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.png') }}" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Catálogo Jardinería</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body>
+    <!-- Fondo y desenfoque general -->
+    <!-- Nuevo Grid Bento -->
+    <div class="main-container">
+        <div class="bento-grid">
+            <!-- Cuadrado Grande (Menú) -->
+            <div class="bento-item menu-box">
+                <div class="menu-container">
+                    <nav>
+                        <ul>
+                            <li><a href="/cactus">C A C T U S</a></li>
+                            <li><a href="/suculentas" class="active-link">S U C U L E N T A S</a></li>
+                            <li><a href="/otros">O T R O S</a></li>
+                            <li><a href="/auth/login">L O G I N</a></li>
+                            <li><a href="/">H O M E</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- Cuadrado Mediano (Logo) -->
+            <div class="bento-item logo-box">
+                <div class="logo">
+                    <img src="{{ url_for('static', filename='images/logo_Cc.webp') }}" alt="Logo Cactus Camila" />
+                </div>
+            </div>
+
+            <!-- Cuadrado Pequeño (Quiénes somos) -->
+            <div class="bento-item about-box">
+                <div class="quienes-somos-content">
+                    <h3>¿Quiénes somos?</h3>
+                    <p>
+                        Somos Cactus Camila, un vivero familiar dedicado a la venta de cactus, suculentas y artículos de
+                        jardinería. Nuestro objetivo es llenar tu hogar de vida verde.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer / Quiénes somos -->
+    <footer>
+
+    </footer>
+
+
+</body>
+
+</html>

@@ -297,3 +297,269 @@ body {
         /* Logo más pequeño en móviles */
     }
 }
+
+
+
+
+
+
+/* ========================================================================== */
+/* ACTIVE LINK */
+/* ========================================================================== */
+
+
+/* Efecto "active" permanente para el enlace de la página actual */
+.menu-container nav ul li a.active-link {
+    text-shadow:
+        0 0 15px rgba(182, 254, 142, 0.9),
+        0 0 30px rgba(145, 193, 129, 0.7),
+        0 0 50px rgba(94, 135, 77, 0.5),
+        0 0 70px rgba(64, 255, 0, 0.3);
+}
+
+
+
+
+/* ========================================================================== */
+/* ESTILO GENERAL DE EL BOTON*/
+/* ========================================================================== */
+
+.glass-button {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 12px 25px;
+    border-radius: 8px;
+    color: #7ab67b;
+    text-decoration: none;
+    margin: 10px 0;
+    /* Solo margen vertical */
+    transition: all 0.3s ease;
+    width: 100%;
+    /* Mismo ancho para todos */
+    box-sizing: border-box;
+    /* El padding no afecta el ancho */
+    text-align: center;
+    /* Texto centrado */
+    display: block;
+    /* Para ocupar todo el ancho */
+}
+
+/* Eliminar margen lateral en grupos de botones */
+.button-group .glass-button {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+
+
+
+
+
+
+
+
+
+/* ========================================================================== */
+/* ESTILOS ESPECÍFICOS PARA LOGIN                                            */
+/* ========================================================================== */
+.login-main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.glass-login-box {
+    background: rgba(18, 18, 18, 0.7);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 40px;
+    width: 100%;
+    max-width: 450px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.login-logo {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.login-logo img {
+    max-width: 180px;
+    width: 100%;
+    height: auto;
+}
+
+.glass-input {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 10px 0;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: #7ab67b;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.glass-input:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 15px rgba(122, 182, 123, 0.3);
+}
+
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+
+
+
+/* BOTONES ESPECÍFICOS PARA LOGIN - ACTUALIZADO */
+/* ========================================================================== */
+
+
+.login-btn {
+    background: rgba(122, 182, 123, 0.3) !important;
+
+}
+
+.home-btn {
+    background: rgba(66, 135, 245, 0.3) !important;
+    /* Azul tenue */
+    color: #8ab4f8f2 !important;
+}
+
+.home-btn:hover {
+    box-shadow: 0 0 15px rgba(66, 135, 245, 0.4) !important;
+}
+
+.register-btn {
+    background: rgba(255, 165, 0, 0.3) !important;
+    /* Naranja tenue */
+    color: #ffc966 !important;
+}
+
+/* Efecto hover para mantener consistencia */
+.glass-button:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+    transform: translateY(-1px);
+}
+
+/* Ajustes específicos para grupos de botones */
+.button-group {
+    gap: 12px;
+    /* Espaciado uniforme */
+}
+
+
+
+.inline-button-group {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.inline-button-group .glass-button {
+    flex: 1;
+    /* Ocupa espacio igualitario */
+    min-width: calc(50% - 4px);
+    /* Garantiza mitad del ancho */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 5px;
+    /* Ajuste para texto corto */
+}
+
+/* Mantener botón de Ingresar en ancho completo */
+.button-group>.login-btn {
+    width: 100%;
+    margin: 0;
+}
+
+
+
+/* Responsive */
+@media (max-width: 480px) {
+    .glass-login-box {
+        padding: 25px;
+    }
+
+    .login-logo img {
+        max-width: 140px;
+    }
+
+    .inline-button-group {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .inline-button-group .glass-button {
+        width: 100% !important;
+        min-width: unset;
+    }
+
+
+}
+
+
+
+
+
+
+
+
+/* ========================================================================== */
+/* ESTILOS ESPECÍFICOS PARA REGISTRO                                         */
+/* ========================================================================== */
+#registerForm {
+    position: relative;
+}
+
+.register-btn {
+    background: rgba(122, 182, 123, 0.4) !important;
+}
+
+.register-btn:hover {
+    box-shadow: 0 0 25px rgba(122, 182, 123, 0.4) !important;
+}
+
+/* Indicador de fortaleza de contraseña */
+.password-strength {
+    margin-top: 5px;
+    font-size: 0.9rem;
+    color: #7ab67b;
+    display: none;
+}
+
+.password-strength.visible {
+    display: block;
+}
+
+
+
+/* BOTONES DE REGISTRO - AJUSTES ESPECÍFICOS                                 */
+/* ========================================================================== */
+#registerForm .inline-button-group .glass-button {
+    background: rgba(255, 255, 255, 0.1) !important;
+
+    color: #7ab67b !important;
+}
+
+#registerForm .inline-button-group .glass-button:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Color específico para el botón Home en registro */
+#registerForm .home-btn {
+    background: rgba(66, 135, 245, 0.3) !important;
+
+    color: #8ab4f8 !important;
+}
