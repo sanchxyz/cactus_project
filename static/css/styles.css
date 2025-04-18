@@ -426,6 +426,8 @@ body {
 
 .login-btn {
     background: rgba(122, 182, 123, 0.3) !important;
+    font-size: 1.1rem !important;
+    /* Aumenta el tamaño en 10% */
 
 }
 
@@ -433,6 +435,8 @@ body {
     background: rgba(66, 135, 245, 0.3) !important;
     /* Azul tenue */
     color: #8ab4f8f2 !important;
+    font-size: 1.1rem !important;
+    /* Aumenta el tamaño en 10% */
 }
 
 .home-btn:hover {
@@ -443,6 +447,8 @@ body {
     background: rgba(255, 165, 0, 0.3) !important;
     /* Naranja tenue */
     color: #ffc966 !important;
+    font-size: 1.1rem !important;
+    /* Aumenta el tamaño en 10% */
 }
 
 /* Efecto hover para mantener consistencia */
@@ -524,11 +530,11 @@ body {
 }
 
 .register-btn {
-    background: rgba(122, 182, 123, 0.4) !important;
+    background: rgba(224, 173, 32, 0.659) !important;
 }
 
 .register-btn:hover {
-    box-shadow: 0 0 25px rgba(122, 182, 123, 0.4) !important;
+    box-shadow: 0 0 25px rgba(234, 183, 73, 0.563) !important;
 }
 
 /* Indicador de fortaleza de contraseña */
@@ -559,7 +565,7 @@ body {
 
 /* Color específico para el botón Home en registro */
 #registerForm .home-btn {
-    background: rgba(66, 135, 245, 0.3) !important;
+    background: rgba(66, 135, 245, 0.568) !important;
 
     color: #8ab4f8 !important;
 }
