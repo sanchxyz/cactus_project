@@ -33,6 +33,7 @@ class User(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True, nullable=False, index=True)  # Índice para búsquedas
+    email = db.Column(db.String(255), unique=True, nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
     role = db.Column(db.Enum(UserRole), nullable=False, default=UserRole.editor)
     last_login = db.Column(db.DateTime, nullable=True)
@@ -70,7 +71,7 @@ class User(db.Model):
 class Product(db.Model):
     __tablename__ = 'products'
     __table_args__ = (
-        CheckConstraint('min_price < max_price', name='check_prices'),  # Restricción a nivel BD
+        CheckConstraint('price_level BETWEEN 1 AND 100', name='check_price_level'),  # Restricción a nivel BD
     )
 
     id = db.Column(db.Integer, primary_key=True)
@@ -78,9 +79,9 @@ class Product(db.Model):
     description = db.Column(db.Text, nullable=True)
     sun_exposure = db.Column(db.Enum(SunExposure), nullable=False)
     watering = db.Column(db.Enum(Watering), nullable=False)
-    fertilizer = db.Column(db.String(50), nullable=False)
-    min_price = db.Column(db.Numeric(8,2), nullable=False)
-    max_price = db.Column(db.Numeric(8,2), nullable=False)
+    fertilizer = db.Column(db.String(100), nullable=False)  # Longitud de 100 en lugar de 50
+    price_level = db.Column(db.SmallInteger, nullable=False)  # ← Nuevo campo (SmallInteger = TINYINT UNSIGNED)
+
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     
@@ -89,15 +90,11 @@ class Product(db.Model):
     updated_by = db.Column(db.Integer, db.ForeignKey('users.id', ondelete='RESTRICT'), nullable=True)
 
     # Validación de precios a nivel de modelo
-    @validates('min_price', 'max_price')
-    def validate_prices(self, key, price):
-        if key == 'min_price' and hasattr(self, 'max_price'):
-            if price >= self.max_price:
-                raise ValueError("El precio mínimo debe ser menor al máximo")
-        elif key == 'max_price' and hasattr(self, 'min_price'):
-            if price <= self.min_price:
-                raise ValueError("El precio máximo debe ser mayor al mínimo")
-        return price
+    @validates('price_level')
+    def validate_price_level(self, key, value):
+        if not (1 <= value <= 100):
+            raise ValueError("El nivel de precio debe estar entre 1 y 100")
+        return value
 
     def __repr__(self):
         return f"<Product {self.name}>"
