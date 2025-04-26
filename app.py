@@ -1,20 +1,22 @@
 from flask import Flask
 from config import Config          # Configuración de la aplicación (variables de entorno, BD, etc.)
-from extensions import db, login_manager  # Extensiones: SQLAlchemy (BD) y LoginManager (autenticación)
+from extensions import db, login_manager, csrf  # Extensiones: SQLAlchemy (BD) y LoginManager (autenticación) proteccion CRSF
 from routes import main            # Blueprint con rutas principales (ej: página de inicio)
 from models import User            # Modelo de usuario para la autenticación
-from routes import auth_bp, admin_bp  # Blueprints para autenticación y administración
+from routes import auth_bp, admin_bp  # Blueprints para autenticación y administración  # Protección CSRF para formularios
 
 def create_app():
     """Factory function para crear y configurar la instancia de la aplicación Flask."""
     app = Flask(__name__)
     
     # Cargar configuración desde la clase Config (config.py)
-    app.config.from_object(Config)
+    app.config.from_object(Config) # Cargar configuración de la clase Config
     
     # Inicializar extensiones con la aplicación
     db.init_app(app)               # Conectar SQLAlchemy con la app
-    login_manager.init_app(app)    # Conectar Flask-Login con la app
+    login_manager.init_app(app)
+    csrf.init_app(app) # Conectar CSRF con la app
+    # Conectar Flask-Login con la app
 
     # Configurar user_loader para Flask-Login (necesario para cargar usuarios desde la BD)
     @login_manager.user_loader

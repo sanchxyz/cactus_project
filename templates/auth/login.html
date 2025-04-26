@@ -2,7 +2,6 @@
 <html lang="es">
 
 <head>
-    <!-- Mismo head que index.html -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Cactus Camila</title>
@@ -11,27 +10,37 @@
 
 <body>
     <div class="login-main-container">
-        <!-- Contenedor de vidrio para el formulario -->
         <div class="glass-login-box">
-            <!-- Logo superior -->
             <div class="login-logo">
                 <img src="{{ url_for('static', filename='images/logo_Cc.webp') }}" alt="Logo Cactus Camila">
             </div>
 
-            <!-- Formulario -->
-            <form class="login-form">
+            <!-- Mensajes de error/flash -->
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <div class="alert alert-danger">
+                {% for message in messages %}
+                {{ message }}
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% endwith %}
+
+            <form method="POST" action="{{ url_for('auth.login') }}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"> <!-- CSRF Protection -->
+
                 <div class="form-group">
-                    <input type="text" placeholder="Nombre de usuario" required class="glass-input">
+                    <input type="text" name="username" placeholder="Nombre de usuario" required class="glass-input">
                 </div>
                 <div class="form-group">
-                    <input type="password" placeholder="Contraseña" required class="glass-input">
+                    <input type="email" name="email" placeholder="Correo electrónico" required class="glass-input">
+                </div>
+                <div class="form-group">
+                    <input type="password" name="password" placeholder="Contraseña" required class="glass-input">
                 </div>
 
-                <!-- Botones -->
                 <div class="button-group">
                     <button type="submit" class="glass-button login-btn">I N G R E S A R</button>
-
-                    <!-- Contenedor especial para botones en línea -->
                     <div class="inline-button-group">
                         <a href="/" class="glass-button home-btn">I N I C I O</a>
                         <a href="/auth/register" class="glass-button register-btn">R E G I S T R A R S E</a>

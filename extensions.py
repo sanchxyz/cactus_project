@@ -2,13 +2,14 @@
 # Importar clases de las extensiones Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+from flask_wtf import CSRFProtect
 
 # Inicializar la extensión SQLAlchemy para manejar la base de datos
 db = SQLAlchemy()
 
 # Inicializar la extensión LoginManager para manejar la autenticación de usuarios
 login_manager = LoginManager()
-
+csrf = CSRFProtect()  
 # Configurar la ruta de login para redirigir usuarios no autenticados
 # ('auth.login' asume un blueprint llamado 'auth' con endpoint 'login')
 login_manager.login_view = 'auth.login'

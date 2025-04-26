@@ -17,47 +17,48 @@
             </div>
 
             <!-- Formulario de registro -->
-            <form class="login-form" id="registerForm">
+            <form class="login-form" id="registerForm" method="POST" action="{{ url_for('auth.register') }}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
                 <div class="form-group">
-                    <input type="text" placeholder="Nombre de usuario" required class="glass-input" name="username"
+                    <input type="text" name="username" placeholder="Nombre de usuario" required class="glass-input"
                         pattern="[A-Za-z0-9]{4,20}" title="4-20 caracteres (solo letras y números)">
                 </div>
 
                 <div class="form-group">
-                    <input type="password" placeholder="Contraseña" required class="glass-input" name="password"
+                    <input type="email" name="email" placeholder="Correo electrónico" required class="glass-input"
+                        title="Introduce un email válido">
+                </div>
+
+                <div class="form-group">
+                    <input type="password" name="password" placeholder="Contraseña" required class="glass-input"
                         minlength="8" title="Mínimo 8 caracteres">
                 </div>
 
                 <div class="form-group">
-                    <input type="password" placeholder="Confirmar contraseña" required class="glass-input"
-                        name="confirm_password">
+                    <input type="password" name="confirm_password" placeholder="Confirmar contraseña" required
+                        class="glass-input">
                 </div>
 
                 <div class="button-group">
                     <button type="submit" class="glass-button register-btn">CREAR CUENTA</button>
-
-                    <!-- Contenedor para botones en línea -->
                     <div class="inline-button-group">
                         <a href="/auth/login" class="glass-button login-link-btn">¿YA TIENES CUENTA?</a>
                         <a href="/" class="glass-button home-btn">I N I C I O</a>
                     </div>
                 </div>
             </form>
-        </div>
-    </div>
+            <script>
+                document.getElementById('registerForm').addEventListener('submit', function (e) {
+                    const pwd = document.querySelector('input[name="password"]').value;
+                    const cpwd = document.querySelector('input[name="confirm_password"]').value;
+                    if (pwd !== cpwd) {
+                        e.preventDefault();
+                        alert('Las contraseñas no coinciden');
+                    }
+                });
+            </script>
 
-    <!-- Validación básica de contraseña -->
-    <script>
-        document.getElementById('registerForm').addEventListener('submit', function (e) {
-            const password = document.querySelector('input[name="password"]').value;
-            const confirmPassword = document.querySelector('input[name="confirm_password"]').value;
-
-            if (password !== confirmPassword) {
-                e.preventDefault();
-                alert('Las contraseñas no coinciden');
-            }
-        });
-    </script>
 </body>
 
 </html>

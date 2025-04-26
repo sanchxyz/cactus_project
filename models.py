@@ -4,8 +4,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy import event, CheckConstraint
 from sqlalchemy.orm import validates
 import enum
-
-db = SQLAlchemy()
+from extensions import db
 
 # ------------------------------------------
 # ENUMS (Mejor organización y type-safety)
@@ -34,7 +33,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True, nullable=False, index=True)  # Índice para búsquedas
     email = db.Column(db.String(255), unique=True, nullable=False)
-    password_hash = db.Column(db.String(128), nullable=False)
+    password_hash = db.Column(db.String(255), nullable=False)
     role = db.Column(db.Enum(UserRole), nullable=False, default=UserRole.editor)
     last_login = db.Column(db.DateTime, nullable=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
