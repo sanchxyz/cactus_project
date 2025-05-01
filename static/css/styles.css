@@ -576,3 +576,127 @@ a {
         min-width: unset;
     }
 }
+
+
+/* ========================================================================== */
+/* 4. ELEMENTOS CONECTADO (user-card)                                        */
+/* ========================================================================== */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2vw;
+}
+
+.logo-box-connected {
+    position: relative;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.logo-connected {
+    max-width: 200px;
+    width: 60%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+    filter: drop-shadow(0 0 15px rgba(122, 182, 123, 0.4));
+}
+
+.user-card {
+    background: rgba(41, 41, 41, 0.31);
+    border-radius: 15px;
+    padding: 40px;
+    backdrop-filter: blur(15px);
+
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+}
+
+.user-card p {
+    color: #FFA500;
+    text-transform: uppercase;
+    margin: 15px 0;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+
+/* ========================================================================== */
+/* 5. BOTONES CONECTADO                                                     */
+/* ========================================================================== */
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    width: 100%;
+    margin-top: 30px;
+}
+
+/* Contenedor fila de botones */
+.button-row {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+}
+
+/* Botones superiores (50% width) */
+.button-row .glass-button {
+    flex: 1;
+    /* Ocupan igual espacio */
+    min-width: 0;
+    /* Corrige overflow en móviles */
+}
+
+/* Botón Logout (100% width) */
+.btn-logout {
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* Mantener colores y efectos */
+.btn-index {
+    background: rgba(122, 182, 123, 0.3) !important;
+    color: #7ab67b !important;
+}
+
+.btn-dashboard {
+    background: rgba(66, 135, 245, 0.3) !important;
+    color: #8ab4f8 !important;
+}
+
+.btn-logout {
+    background: rgba(245, 66, 66, 0.3) !important;
+    color: #f88a8a !important;
+}
+
+.glass-button:hover {
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.3) !important;
+    transform: translateY(-2px);
+}
+
+
+/* ========================================================================== */
+/* RESPONSIVE                                                               */
+/* ========================================================================== */
+@media (max-width: 768px) {
+    .user-card {
+        padding: 25px;
+    }
+
+    .logo-connected {
+        width: 50%;
+        max-width: 150px;
+    }
+
+    .button-row {
+        flex-direction: column;
+    }
+
+    .button-row .glass-button {
+        width: 100%;
+    }
+}

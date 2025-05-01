@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
-from flask_login import login_user
-from models import User, Product, ProductImage
+from flask_login import login_user, current_user, login_required, logout_user
+from models import User, Product, ProductImage, UserRole
 from extensions import db
 
 # Creación del blueprint principal
@@ -32,6 +32,11 @@ def otros():
 
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
+    # Si ya está logueado, mostramos otra página
+    if current_user.is_authenticated:
+        return render_template('auth/already_logged_in.html', user=current_user)
+
+
     if request.method == 'POST':
         username = request.form.get('username').strip()
         email = request.form.get('email').strip().lower()
@@ -49,14 +54,25 @@ def login():
             flash('Credenciales inválidas', 'danger')
             return redirect(url_for('auth.login'))
 
-        # Iniciar sesión
+
         login_user(user)
         flash('¡Bienvenido, {}!'.format(user.username), 'success')
-        return redirect(url_for('main.index'))
+        return redirect(url_for('admin.dashboard'))  # 🔄 Cambia esta línea
 
     return render_template('auth/login.html')
 
+
+@auth_bp.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    flash('Sesión cerrada correctamente.', 'info')
+    return redirect(url_for('auth.login'))
+
+
+
 @auth_bp.route('/register', methods=['GET', 'POST'])
+@login_required
 def register():
     if request.method == 'POST':
         username = request.form.get('username', '').strip()
@@ -84,6 +100,13 @@ def register():
         if exists:
             flash('El nombre de usuario o el email ya están en uso', 'danger')
             return redirect(url_for('auth.register'))
+        
+        # Verificar si el usuario es admin (opcional, dependiendo de tu lógica)
+        if user.role != UserRole.admin:  # Asegúrate de importar UserRole desde models.py
+            flash('No tienes permisos de administrador', 'danger')
+            return redirect(url_for('main.index'))
+
+
 
         # Crear y guardar usuario
         user = User(username=username, email=email)
@@ -101,5 +124,6 @@ def register():
 
 
 @admin_bp.route('/dashboard')  # ✔️ Ruta para el dashboard de administración
+@login_required 
 def dashboard():
     return render_template('admin/dashboard.html')

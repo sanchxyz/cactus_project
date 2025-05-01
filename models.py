@@ -1,5 +1,6 @@
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy import event, CheckConstraint
 from sqlalchemy.orm import validates
@@ -27,7 +28,7 @@ class Watering(enum.Enum):
 # ------------------------------------------
 # MODELO USER (Con mejoras de seguridad)
 # ------------------------------------------
-class User(db.Model):
+class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
