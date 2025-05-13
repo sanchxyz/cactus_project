@@ -16,15 +16,15 @@
             </div>
 
             <!-- Mensajes de error/flash -->
-            {% with messages = get_flashed_messages() %}
-            {% if messages %}
-            <div class="alert alert-danger">
-                {% for message in messages %}
-                {{ message }}
+            <div class="flash-container">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% for category, message in messages %}
+                <div class="flash-message flash-{{ category }}">
+                    {{ message }}
+                </div>
                 {% endfor %}
+                {% endwith %}
             </div>
-            {% endif %}
-            {% endwith %}
 
             <form method="POST" action="{{ url_for('auth.login') }}">
                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"> <!-- CSRF Protection -->
@@ -49,6 +49,15 @@
             </form>
         </div>
     </div>
+    <script>
+        // Autodesaparición después de 5 segundos
+        document.querySelectorAll('.flash-message').forEach(message => {
+            setTimeout(() => {
+                message.style.opacity = '0';
+                setTimeout(() => message.remove(), 500);
+            }, 5000);
+        });
+    </script>
 </body>
 
 </html>

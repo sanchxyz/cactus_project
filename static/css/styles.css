@@ -700,3 +700,119 @@ a {
         width: 100%;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ========================================================================== */
+/* NOTIFICACIONES GLASSMORPHISM                                              */
+/* ========================================================================== */
+.flash-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    width: 350px;
+}
+
+.flash-message {
+    padding: 18px 25px;
+    margin-bottom: 15px;
+    background: rgba(18, 18, 18, 0.85);
+    border-radius: 50px;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 0.95rem;
+    opacity: 0;
+    animation: slideIn 0.5s ease-out forwards;
+    position: relative;
+    overflow: hidden;
+}
+
+.flash-message::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 5px;
+    height: 100%;
+}
+
+/* Tipos de mensaje */
+.flash-success {
+    color: #7ab67b;
+    border-left-color: #7ab67b55;
+}
+
+.flash-success::before {
+    background: linear-gradient(180deg, #7ab67b55 0%, #7ab67b22 100%);
+}
+
+.flash-error {
+    color: #f88a8a;
+    border-left-color: #f88a8a55;
+}
+
+.flash-error::before {
+    background: linear-gradient(180deg, #f88a8a55 0%, #f88a8a22 100%);
+}
+
+.flash-warning {
+    color: #ffd28a;
+    border-left-color: #ffd28a55;
+}
+
+.flash-warning::before {
+    background: linear-gradient(180deg, #ffd28a55 0%, #ffd28a22 100%);
+}
+
+.flash-info {
+    color: #8ab4f8;
+    border-left-color: #8ab4f855;
+}
+
+.flash-info::before {
+    background: linear-gradient(180deg, #8ab4f855 0%, #8ab4f822 100%);
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .flash-container {
+        width: 90%;
+        left: 5%;
+        right: 5%;
+        top: 10px;
+    }
+
+    .flash-message {
+        width: 100%;
+        margin: 10px auto;
+    }
+}

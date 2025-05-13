@@ -44,14 +44,14 @@ def login():
 
         # Validación básica
         if not all([username, email, password]):
-            flash('Todos los campos son obligatorios', 'danger')
+            flash('Todos los campos son obligatorios', 'error')
             return redirect(url_for('auth.login'))
 
         # Buscar usuario por username Y email
         user = User.query.filter_by(username=username, email=email).first()
 
         if not user or not user.check_password(password):
-            flash('Credenciales inválidas', 'danger')
+            flash('Credenciales inválidas', 'error')
             return redirect(url_for('auth.login'))
 
 
@@ -74,50 +74,64 @@ def logout():
 @auth_bp.route('/register', methods=['GET', 'POST'])
 @login_required
 def register():
+    # Verificar permisos primero
+    if current_user.role != UserRole.admin:
+        flash("No tienes permisos de administrador", "danger")
+        return redirect(url_for('main.index'))
+
+    # Inicializar variables para GET o POST
+    username = email = password = confirm = ""
+    form_errors = {}
+
     if request.method == 'POST':
+        # Obtener datos del formulario
         username = request.form.get('username', '').strip()
         email = request.form.get('email', '').strip().lower()
-        password = request.form.get('password')
-        confirm = request.form.get('confirm_password')
+        password = request.form.get('password', '')
+        confirm = request.form.get('confirm_password', '')
 
-        # Validaciones básicas
+        # Validaciones
         if not all([username, email, password, confirm]):
-            flash('Todos los campos son obligatorios', 'danger')
-            return redirect(url_for('auth.register'))
-
+            form_errors['required'] = 'Todos los campos son obligatorios'
+        
         if password != confirm:
-            flash('Las contraseñas no coinciden', 'danger')
-            return redirect(url_for('auth.register'))
-
+            form_errors['password_mismatch'] = 'Las contraseñas no coinciden'
+        
         if len(password) < 8:
-            flash('La contraseña debe tener al menos 8 caracteres', 'danger')
-            return redirect(url_for('auth.register'))
+            form_errors['password_length'] = 'La contraseña debe tener al menos 8 caracteres'
 
-        # Verificar unicidad de usuario y email
+        # Verificar si el usuario/email ya existe
         exists = User.query.filter(
             (User.username == username) | (User.email == email)
         ).first()
         if exists:
-            flash('El nombre de usuario o el email ya están en uso', 'danger')
-            return redirect(url_for('auth.register'))
-        
-        # Verificar si el usuario es admin (opcional, dependiendo de tu lógica)
-        if user.role != UserRole.admin:  # Asegúrate de importar UserRole desde models.py
-            flash('No tienes permisos de administrador', 'danger')
-            return redirect(url_for('main.index'))
+            form_errors['exists'] = 'El usuario o email ya están registrados'
 
+        # Si hay errores, mostrarlos
+        if form_errors:
+            for error in form_errors.values():
+                flash(error, 'danger')
+            return render_template('auth/register.html', 
+                username=username, 
+                email=email, 
+                form_errors=form_errors
+            )
 
-
-        # Crear y guardar usuario
+        # Si todo está bien, crear usuario
         user = User(username=username, email=email)
         user.set_password(password)
         db.session.add(user)
         db.session.commit()
 
-        flash('Cuenta creada con éxito. Ahora puedes iniciar sesión.', 'success')
+        flash('Cuenta creada exitosamente', 'success')
         return redirect(url_for('auth.login'))
 
-    return render_template('auth/register.html')
+    # Renderizar template (GET o POST con errores)
+    return render_template('auth/register.html', 
+        username=username, 
+        email=email,
+        form_errors=form_errors
+    )
 
 
 
