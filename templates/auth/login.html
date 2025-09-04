@@ -27,20 +27,29 @@
             </div>
 
             <form method="POST" action="{{ url_for('auth.login') }}">
-                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"> <!-- CSRF Protection -->
+                {{ form.hidden_tag() }} <div class="form-group">
+                    {{ form.username(class="glass-input", placeholder="Nombre de usuario") }}
+                    {% for error in form.username.errors %}
+                    <span class="form-error">{{ error }}</span>
+                    {% endfor %}
+                </div>
 
                 <div class="form-group">
-                    <input type="text" name="username" placeholder="Nombre de usuario" required class="glass-input">
+                    {{ form.email(class="glass-input", placeholder="Correo electrónico") }}
+                    {% for error in form.email.errors %}
+                    <span class="form-error">{{ error }}</span>
+                    {% endfor %}
                 </div>
+
                 <div class="form-group">
-                    <input type="email" name="email" placeholder="Correo electrónico" required class="glass-input">
-                </div>
-                <div class="form-group">
-                    <input type="password" name="password" placeholder="Contraseña" required class="glass-input">
+                    {{ form.password(class="glass-input", placeholder="Contraseña") }}
+                    {% for error in form.password.errors %}
+                    <span class="form-error">{{ error }}</span>
+                    {% endfor %}
                 </div>
 
                 <div class="button-group">
-                    <button type="submit" class="glass-button login-btn">I N G R E S A R</button>
+                    {{ form.submit(class="glass-button login-btn") }}
                     <div class="inline-button-group">
                         <a href="/" class="glass-button home-btn">I N I C I O</a>
                         <a href="/auth/register" class="glass-button register-btn">R E G I S T R A R S E</a>

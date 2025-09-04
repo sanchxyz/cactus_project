@@ -1,15 +1,11 @@
-<!DOCTYPE html>
-<html lang="es">
+{% extends 'admin/admin_base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <title>Dashboard | Cactus Camila</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-</head>
+{% block title %}Dashboard{% endblock %}
 
-<body>
-    <h1>¡Hola! Estás en la ruta /admin/dashboard</h1>
-    <a href="{{ url_for('main.index') }}">Volver al inicio</a>
-</body>
-
-</html>
+{% block admin_content %}
+<h1>¡Bienvenido de nuevo, {{ current_user.username }}!</h1>
+<p>
+    Desde este panel podrás administrar el catálogo de productos de Cactus Camila.
+    Selecciona una opción del panel de control para comenzar.
+</p>
+{% endblock %}

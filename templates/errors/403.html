@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso Prohibido (403)</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body>
+    <div class="login-main-container">
+        <div class="glass-login-box error-page">
+            <h1 class="error-code" style="color: #ffd28a;">403</h1>
+            <h2 class="error-title">Acceso Prohibido</h2>
+            <p class="error-description">
+                No tienes los permisos necesarios para acceder a esta página.
+            </p>
+            <a href="{{ url_for('main.index') }}" class="glass-button home-btn" style="margin-top: 20px;">Volver al
+                Inicio</a>
+        </div>
+    </div>
+</body>
+
+</html>

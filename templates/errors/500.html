@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error del Servidor (500)</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body>
+    <div class="login-main-container">
+        <div class="glass-login-box error-page">
+            <h1 class="error-code" style="color: #f88a8a;">500</h1>
+            <h2 class="error-title">Algo Salió Mal</h2>
+            <p class="error-description">
+                Lo sentimos, estamos experimentando un problema técnico. Nuestro equipo ya ha sido notificado.
+            </p>
+            <a href="{{ url_for('main.index') }}" class="glass-button home-btn" style="margin-top: 20px;">Volver al
+                Inicio</a>
+        </div>
+    </div>
+</body>
+
+</html>

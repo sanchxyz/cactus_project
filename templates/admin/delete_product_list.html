@@ -1,0 +1,44 @@
+{% extends 'admin/admin_base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block admin_content %}
+<h1>{{ title }}</h1>
+<p style="color: #ef9a9a; margin-bottom: 20px;">Atención: La eliminación de un producto es permanente y no se puede
+    deshacer.</p>
+<table class="product-manage-table">
+    <thead>
+        <tr>
+            <th>Imagen</th>
+            <th>Nombre</th>
+            <th>Acción</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in products %}
+        <tr>
+            <td>
+                {% if product.images %}
+                <img src="{{ url_for('static', filename=product.images[0].image_url) }}" alt="{{ product.name }}"
+                    class="table-img">
+                {% else %}
+                <span class="no-image-placeholder">Sin imagen</span>
+                {% endif %}
+            </td>
+            <td>{{ product.name }}</td>
+            <td>
+                <form action="{{ url_for('admin.delete_product', product_id=product.id) }}" method="POST">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    <button type="submit" class="delete-button"
+                        onclick="return confirm('¿Estás 100% seguro de que quieres eliminar este producto?');">
+                        Eliminar
+                    </button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{{ url_for('admin.dashboard') }}" class="glass-button home-btn" style="margin-top: 20px; width: 200px;">Volver
+    al Dashboard</a>
+{% endblock %}

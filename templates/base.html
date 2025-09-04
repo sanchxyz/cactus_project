@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Catálogo de plantas y artículos de jardinería" />
+    <meta name="keywords" content="cactus, suculentas, jardinería, vivero, plantas" />
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.png') }}" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Catálogo Jardinería</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body>
+    <!-- Fondo y desenfoque general -->
+    <!-- Nuevo Grid Bento -->
+    <div class="main-container">
+        <div class="bento-grid">
+            <!-- Cuadrado Grande (Menú) -->
+            <div class="bento-item menu-box">
+                <div class="menu-container">
+                    <nav>
+                        <ul>
+                            <li><a href="/cactus" class="{{ 'active-link' if active_page == 'cactus' else '' }}">C A C T
+                                    U S</a></li>
+                            <li><a href="/suculentas"
+                                    class="{{ 'active-link' if active_page == 'suculentas' else '' }}">S U C U L E N T A
+                                    S</a></li>
+                            <li><a href="/otros" class="{{ 'active-link' if active_page == 'otros' else '' }}">O T R O
+                                    S</a></li>
+                            <li>
+                                <a href="/auth/login" class="{{ 'active-link' if active_page == 'login' else '' }}">
+                                    <img src="{{ url_for('static', filename='images/login-icon.webp') }}" alt="Login"
+                                        class="icon-mobile">
+                                    <span class="text-desktop">L O G I N</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/" class="{{ 'active-link' if active_page == 'home' else '' }}">
+                                    <img src="{{ url_for('static', filename='images/home-icon.webp') }}" alt="Home"
+                                        class="icon-mobile">
+                                    <span class="text-desktop">H O M E</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+                {% block content %}
+                {% endblock %}
+            </div>
+
+            <!-- Cuadrado Mediano (Logo) -->
+            <div class="bento-item logo-box">
+                <div class="logo">
+                    <img src="{{ url_for('static', filename='images/logo_Cc.webp') }}" alt="Logo Cactus Camila" />
+                </div>
+
+                <div class="quienes-somos-content">
+                    <h3>¿Quiénes somos?</h3>
+                    <p>
+                        Somos Cactus Camila, un vivero familiar dedicado a la venta de cactus, suculentas y artículos de
+                        jardinería. Nuestro objetivo es llenar tu hogar de vida verde.
+                    </p>
+                </div>
+
+
+
+            </div>
+
+            <!-- Cuadrado Pequeño (Quiénes somos) -->
+            <div class="bento-item about-box">
+
+                <!-- Nuevo: Contenedor para redes sociales -->
+                <div class="social-qr-container">
+
+                    <div class="social-media">
+                        <a href="https://api.whatsapp.com/send?phone=50376205257" target="_blank" class="social-link">
+                            <img src="{{ url_for('static', filename='images/whatsapp.webp') }}" alt="WhatsApp">
+                            <span>WhatsApp</span>
+                        </a>
+                        <a href="https://www.facebook.com/cactuscamila.prducts" target="_blank" class="social-link">
+                            <img src="{{ url_for('static', filename='images/facebook.webp') }}" alt="Facebook">
+                            <span>Facebook</span>
+                        </a>
+                        <a href="https://www.instagram.com/cactus_camila/" target="_blank" class="social-link">
+                            <img src="{{ url_for('static', filename='images/instagram.webp') }}" alt="Instagram">
+                            <span>Instagram</span>
+                        </a>
+                    </div>
+
+                    <div class="qr-code-container">
+                        <img src="{{ url_for('static', filename='images/QR_Cactus_camila.webp') }}"
+                            alt="Código QR de Cactus Camila">
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer / Quiénes somos -->
+    <footer>
+
+    </footer>
+
+
+</body>
+
+</html>

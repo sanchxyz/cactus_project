@@ -1,0 +1,54 @@
+{% extends 'admin/admin_base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block admin_content %}
+<h2 style="text-align: center; margin-bottom: 20px;">{{ title }}</h2>
+
+<form method="POST" action="" enctype="multipart/form-data">
+    {{ form.hidden_tag() }} <div class="form-group">
+        {{ form.name.label }}
+        {{ form.name(class="glass-input") }}
+    </div>
+
+    <div class="form-group">
+        {{ form.category.label }}
+        {{ form.category(class="glass-input") }}
+    </div>
+
+    <div class="form-group">
+        {{ form.description.label }}
+        {{ form.description(class="glass-input", rows="3") }}
+    </div>
+
+    <div class="form-group">
+        {{ form.sun_exposure.label }}
+        {{ form.sun_exposure(class="glass-input") }}
+    </div>
+
+    <div class="form-group">
+        {{ form.watering.label }}
+        {{ form.watering(class="glass-input") }}
+    </div>
+
+    <div class="form-group">
+        {{ form.fertilizer.label }}
+        {{ form.fertilizer(class="glass-input") }}
+    </div>
+
+    <div class="form-group">
+        {{ form.price_level.label }}
+        {{ form.price_level(class="glass-input") }}
+    </div>
+
+    <div class="form-group">
+        {{ form.image.label }}
+        {{ form.image(class="glass-input") }}
+    </div>
+
+    <div class="button-group">
+        {{ form.submit(class="glass-button login-btn") }}
+        <a href="{{ url_for('admin.dashboard') }}" class="glass-button home-btn">Cancelar</a>
+    </div>
+</form>
+{% endblock %}

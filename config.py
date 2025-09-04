@@ -10,7 +10,10 @@ class Config:
     SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL") or os.environ.get("DATABASE_URL") 
     
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+    UPLOAD_FOLDER = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'static/uploads')
+
     
     # Verificación inmediata al cargar la clase
-    if not SQLALCHEMY_DATABASE_URI:  # 🛑 Si falta, error al iniciar
+    if not SQLALCHEMY_DATABASE_URI:  
         raise RuntimeError("Falta DATABASE_URL en .env o variables de entorno")

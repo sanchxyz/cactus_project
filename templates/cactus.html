@@ -1,62 +1,57 @@
-<!DOCTYPE html>
-<html lang="es">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="description" content="Catálogo de plantas y artículos de jardinería" />
-    <meta name="keywords" content="cactus, suculentas, jardinería, vivero, plantas" />
-    <link rel="icon" href="{{ url_for('static', filename='images/favicon.png') }}" type="image/x-icon" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Catálogo Jardinería</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-</head>
+{% block content %}
+<div class="product-grid-container">
+    <div class="product-grid">
+        {% for product in products %}
 
-<body>
-    <!-- Fondo y desenfoque general -->
-    <!-- Nuevo Grid Bento -->
-    <div class="main-container">
-        <div class="bento-grid">
-            <!-- Cuadrado Grande (Menú) -->
-            <div class="bento-item menu-box">
-                <div class="menu-container">
-                    <nav>
-                        <ul>
-                            <li><a href="/cactus" class="active-link">C A C T U S</a></li>
-                            <li><a href="/suculentas">S U C U L E N T A S</a></li>
-                            <li><a href="/otros">O T R O S</a></li>
-                            <li><a href="/auth/login">L O G I N</a></li>
-                            <li><a href="/">H O M E</a></li>
-                        </ul>
-                    </nav>
+        <div class="product-card">
+            {% if product.images %}
+            <img src="{{ url_for('static', filename=product.images[0].image_url) }}" alt="{{ product.name }}">
+            {% endif %}
+
+            <div class="product-info">
+                <div class="product-header">
+                    <h3 class="product-name">{{ product.name }}</h3>
+                    <span class="product-price">${{ product.price_level }}</span>
                 </div>
-            </div>
 
-            <!-- Cuadrado Mediano (Logo) -->
-            <div class="bento-item logo-box">
-                <div class="logo">
-                    <img src="{{ url_for('static', filename='images/logo_Cc.webp') }}" alt="Logo Cactus Camila" />
-                </div>
-            </div>
+                <p class="product-description">{{ product.description }}</p>
 
-            <!-- Cuadrado Pequeño (Quiénes somos) -->
-            <div class="bento-item about-box">
-                <div class="quienes-somos-content">
-                    <h3>¿Quiénes somos?</h3>
-                    <p>
-                        Somos Cactus Camila, un vivero familiar dedicado a la venta de cactus, suculentas y artículos de
-                        jardinería. Nuestro objetivo es llenar tu hogar de vida verde.
-                    </p>
+                <div class="product-specs">
+                    <div class="spec-item">
+                        <span class="spec-label">Riego:</span>
+                        <span class="spec-value">{{ product.watering.value.capitalize() }}</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Exposición:</span>
+                        <span class="spec-value">{{ product.sun_exposure.value.capitalize() }}</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Fertilizante:</span>
+                        <span class="spec-value">{{ product.fertilizer.capitalize() }}</span>
+                    </div>
                 </div>
+
+                {% if current_user.is_authenticated and current_user.role.name == 'admin' %}
+                <div style="margin-top: 10px;">
+                    <a href="{{ url_for('admin.edit_product', product_id=product.id) }}" class="edit-button">Editar</a>
+                    <form action="{{ url_for('admin.delete_product', product_id=product.id) }}" method="POST"
+                        style="display: inline; margin-left: 5px;">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                        <button type="submit" class="delete-button"
+                            onclick="return confirm('¿Estás seguro de que quieres eliminar este producto? Esta acción no se puede deshacer.');">
+                            Eliminar
+                        </button>
+                    </form>
+                </div>
+                {% endif %}
             </div>
         </div>
+
+        {% else %}
+        <p>No hay cactus disponibles en este momento.</p>
+        {% endfor %}
     </div>
-
-    <!-- Footer / Quiénes somos -->
-    <footer>
-
-    </footer>
-
-
-</body>
-
-</html>
+</div>
+{% endblock %}

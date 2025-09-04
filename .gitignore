@@ -1,77 +1,61 @@
-# .gitignore para proyecto Flask
+# ==================================
+# SECRETOS
+# ==================================
+.env
+.flaskenv
 
-# --------------------------------------
-# Entornos virtuales y variables de entorno
-# --------------------------------------
+# ==================================
+# ENTORNO VIRTUAL DE PYTHON
+# ==================================
 .venv/
 venv/
 env/
-ENV/
-.env
 
-# --------------------------------------
-# Archivos generados por Python
-# --------------------------------------
+# ==================================
+# ARCHIVOS GENERADOS POR PYTHON Y FLASK
+# ==================================
 __pycache__/
-*.py[cod]
-*.egg-info
-*.log
-*.pot
 *.pyc
 *.pyo
 *.pyd
+instance/
 
-# --------------------------------------
-# Entornos y dependencias
-# --------------------------------------
-pip-selfcheck.json
-PyPI/
-build/
-dist/
-*.egg
 
-# --------------------------------------
-# Configuración de IDE y editor
-# --------------------------------------
+# ==================================
+# ARCHIVOS GENERADOS POR EL USUARIO
+# (Imágenes, documentos, etc.)
+# ==================================
+static/uploads/
+
+
+
+# ==================================
+# ARCHIVOS DE PRUEBAS (CACHÉ Y REPORTES)
+# ==================================
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ==================================
+# ARCHIVOS DE CONFIGURACIÓN DE IDE Y SO
+# ==================================
 .vscode/
 .idea/
+.DS_Store
 *.swp
 *.swo
-*.sublime-*
-.DS_Store
 
-# --------------------------------------
-# Archivos de base de datos y caché
-# --------------------------------------
-instance/  # Carpeta de instancia de Flask
+# ==================================
+# BASES DE DATOS LOCALES 
+# ==================================
 *.db
 *.sqlite
-*.sql
-.cache
-.pytest_cache/
+*.sqlite3
 
-# --------------------------------------
-# Archivos temporales y de desarrollo
-# --------------------------------------
-temp/
-tmp/
+# ==================================
+# LOGS Y ARCHIVOS TEMPORALES
+# ==================================
+*.log
+*.log.*
 *.tmp
 *.bak
-*.backup
-
-# --------------------------------------
-# Archivos específicos del proyecto
-# --------------------------------------
-# Si usas Jupyter o notebooks:
-*.ipynb_checkpoints
-
-# --------------------------------------
-# Archivos estáticos compilados (si usas SASS/LESS)
-# --------------------------------------
-static/css/*.css.map
-static/js/*.min.js
-
-# --------------------------------------
-# Paquetes de dependencias (si usas node.js)
-# --------------------------------------
-node_modules/

@@ -24,6 +24,11 @@ class Watering(enum.Enum):
     bajo = "bajo"
     moderado = "moderado"
     alto = "alto"
+class ProductCategory(enum.Enum):
+    cactus = "cactus"
+    suculenta = "suculenta"
+    otro = "otro"
+    destacado = "destacado"
 
 # ------------------------------------------
 # MODELO USER (Con mejoras de seguridad)
@@ -76,6 +81,7 @@ class Product(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False, index=True)  # Índice para búsquedas
+    category = db.Column(db.Enum(ProductCategory), nullable=False)
     description = db.Column(db.Text, nullable=True)
     sun_exposure = db.Column(db.Enum(SunExposure), nullable=False)
     watering = db.Column(db.Enum(Watering), nullable=False)

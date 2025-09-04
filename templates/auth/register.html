@@ -30,31 +30,45 @@
             {% if current_user.is_authenticated and current_user.role.value == 'admin' %}
             <!-- Formulario de registro -->
             <form class="login-form" id="registerForm" method="POST" action="{{ url_for('auth.register') }}">
-                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                {{ form.hidden_tag() }}
 
                 <div class="form-group">
-                    <input type="text" name="username" placeholder="Nombre de usuario" required class="glass-input"
-                        pattern="[A-Za-z0-9]{4,20}" title="4-20 caracteres (solo letras y números)"
-                        value="{{ username }}">
+                    {{ form.username(class="glass-input", placeholder="Nombre de usuario") }}
+                    {% for error in form.username.errors %}
+                    <span class="form-error">{{ error }}</span>
+                    {% endfor %}
                 </div>
 
                 <div class="form-group">
-                    <input type="email" name="email" placeholder="Correo electrónico" required class="glass-input"
-                        title="Introduce un email válido" value="{{ email }}">
+                    {{ form.email(class="glass-input", placeholder="Correo electrónico") }}
+                    {% for error in form.email.errors %}
+                    <span class="form-error">{{ error }}</span>
+                    {% endfor %}
                 </div>
 
                 <div class="form-group">
-                    <input type="password" name="password" placeholder="Contraseña" required class="glass-input"
-                        minlength="8" title="Mínimo 8 caracteres">
+                    {{ form.password(class="glass-input", placeholder="Contraseña") }}
+                    {% for error in form.password.errors %}
+                    <span class="form-error">{{ error }}</span>
+                    {% endfor %}
                 </div>
 
                 <div class="form-group">
-                    <input type="password" name="confirm_password" placeholder="Confirmar contraseña" required
-                        class="glass-input">
+                    {{ form.confirm_password(class="glass-input", placeholder="Confirmar contraseña") }}
+                    {% for error in form.confirm_password.errors %}
+                    <span class="form-error">{{ error }}</span>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.role(class="glass-input") }}
+                    {% for error in form.role.errors %}
+                    <span class="form-error">{{ error }}</span>
+                    {% endfor %}
                 </div>
 
                 <div class="button-group">
-                    <button type="submit" class="glass-button register-btn">CREAR CUENTA</button>
+                    {{ form.submit(class="glass-button register-btn") }}
                     <div class="inline-button-group">
                         <a href="/auth/login" class="glass-button login-link-btn">¿YA TIENES CUENTA?</a>
                         <a href="/" class="glass-button home-btn">I N I C I O</a>

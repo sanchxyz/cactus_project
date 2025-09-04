@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Dashboard{% endblock %} | Cactus Camila</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body>
+
+    <button id="hamburger-btn" class="hamburger-btn" aria-label="Abrir menú">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="flash-container">
+        {% for category, message in messages %}
+        <div class="flash-message flash-{{ category }}">{{ message }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+
+    <div class="dashboard-container">
+        <div class="dashboard-grid">
+            <div id="admin-sidebar" class="bento-item control-panel">
+                <h2>Centro de Control</h2>
+
+                <a href="{{ url_for('admin.add_product') }}" class="glass-button action-btn add-btn">
+                    Añadir Producto
+                </a>
+
+                <a href="{{ url_for('admin.manage_products') }}" class="glass-button action-btn edit-btn">
+                    Editar Producto
+                </a>
+
+                <a href="{{ url_for('admin.delete_list') }}" class="glass-button action-btn logout-btn">Eliminar
+                    Producto</a>
+
+                <hr class="control-divider">
+
+                <a href="{{ url_for('main.index') }}" class="glass-button action-btn home-btn">
+                    Ir a la Página Principal
+                </a>
+
+                <a href="#" target="_blank" class="glass-button action-btn monitor-btn">
+                    Ver Monitoreo
+                </a>
+                <a href="{{ url_for('auth.logout') }}" class="glass-button action-btn logout-btn">Cerrar Sesión</a>
+            </div>
+            <div class="bento-item welcome-panel">
+                {% block admin_content %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+{% extends 'admin/admin_base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block admin_content %}
+<h1>{{ title }}</h1>
+<table class="product-manage-table">
+    <thead>
+        <tr>
+            <th>Imagen</th>
+            <th>Nombre</th>
+            <th>Categoría</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in products %}
+        <tr>
+            <td>
+                {% if product.images %}
+                <img src="{{ url_for('static', filename=product.images[0].image_url) }}" alt="{{ product.name }}"
+                    class="table-img">
+                {% else %}
+                <span class="no-image-placeholder">Sin imagen</span>
+                {% endif %}
+            </td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.category.value.capitalize() }}</td>
+            <td>
+                <a href="{{ url_for('admin.edit_product', product_id=product.id) }}" class="edit-button">Editar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{{ url_for('admin.dashboard') }}" class="glass-button home-btn" style="margin-top: 20px; width: 200px;">Volver
+    al Dashboard</a>
+{% endblock %}
