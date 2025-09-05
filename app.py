@@ -14,6 +14,10 @@ def create_app():
 
     # Cargar configuración desde la clase Config (config.py)
     app.config.from_object(Config)
+    
+    # Asegurarse de que la carpeta de subidas existe
+    if not os.path.exists(app.config['UPLOAD_FOLDER']):
+        os.makedirs(app.config['UPLOAD_FOLDER'])
 
     # Inicializar extensiones con la aplicación
     db.init_app(app)
