@@ -2,7 +2,6 @@
 # SECRETOS
 # ==================================
 .env
-.flaskenv
 
 # ==================================
 # ENTORNO VIRTUAL DE PYTHON
@@ -10,9 +9,7 @@
 .venv/
 venv/
 env/
-migrations/
-tests/
-pytest.ini
+
 
 # ==================================
 # ARCHIVOS GENERADOS POR PYTHON Y FLASK
@@ -62,3 +59,5 @@ htmlcov/
 *.log.*
 *.tmp
 *.bak
+migrations/
+tryDB.py
