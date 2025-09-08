@@ -1,0 +1,34 @@
+# Archivos y carpetas a ignorar por Docker al construir la imagen
+
+# Archivos de Git
+.git
+.gitignore
+tryDB.py
+
+# Entorno virtual y variables de entorno
+.venv
+venv
+env
+.env
+.flaskenv
+
+# Caché de Python y Pytest
+__pycache__
+.pytest_cache
+
+# Archivos de configuración de IDE
+.vscode/
+.idea/
+
+# El propio Dockerfile y docker-compose, no necesitan estar dentro de la imagen
+Dockerfile
+docker-compose.yml
+
+# Archivos de base de datos locales (buena práctica)
+*.db
+*.sqlite3
+
+# Carpeta de migraciones (ya que las ejecutaremos desde la app)
+# Nota: La mantenemos por si decidimos correr migraciones al inicio.
+# Por ahora la dejamos fuera para simplificar.
+# migrations/
