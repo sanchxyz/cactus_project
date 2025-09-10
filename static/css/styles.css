@@ -936,7 +936,7 @@ MD – Medium (768px - 991px)
         grid-template-rows: auto;
         height: auto;
         margin-top: 100px;
-        padding: 5vw;
+        padding: 0 2vw;
         gap: 20px;
 
     }
@@ -982,7 +982,6 @@ MD – Medium (768px - 991px)
         /* Posicionamiento absoluto */
         position: absolute;
         top: 5px;
-        /* <-- ESTA ES AHORA LA ÚNICA LÍNEA QUE CONTROLA LA ALTURA */
         left: 50%;
         transform: translateX(-50%);
         z-index: 10;
@@ -1002,7 +1001,7 @@ MD – Medium (768px - 991px)
         grid-column: 1 / -1;
         /* Ocupan la única columna */
         width: 100%;
-        max-width: 450px;
+        max-width: 100%;
         margin-left: auto;
         margin-right: auto;
     }
@@ -1011,7 +1010,8 @@ MD – Medium (768px - 991px)
         position: relative;
         grid-row: 1 / 2;
         padding: 0;
-        margin-bottom: 20px;
+        margin-top: -39px;
+        margin-bottom: -5px;
 
     }
 
@@ -1149,7 +1149,6 @@ MD – Medium (768px - 991px)
 SM – Small (576 - 767px)
 ========================= */
 
-@media (max-width: 767px) {}
 
 
 

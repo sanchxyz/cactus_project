@@ -8,10 +8,7 @@ services:
     networks:
       - app-network
     volumes:
-      # Mapea la carpeta local a la del contenedor para que Flask pueda guardar archivos.
       - ./static/uploads:/app/static/uploads
-    
-    
 
   nginx:
     image: nginx:latest
@@ -21,15 +18,30 @@ services:
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
       - ./static:/app/static:ro
-      # Mapea la MISMA carpeta local para que Nginx pueda LEER las imágenes.
-      # El ':ro' significa 'read-only' (solo lectura), una buena práctica de seguridad.
       - ./static/uploads:/app/static/uploads:ro
     networks:
       - app-network
     depends_on:
       - app
 
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:latest
+    container_name: cadvisor
+    restart: unless-stopped
+    privileged: true
+    ports:
+      - "8080:8080"
+    volumes:
+      - "/:/rootfs:ro"
+      - "/var/run:/var/run:ro"
+      - "/sys:/sys:ro"
+      - "/var/lib/docker:/var/lib/docker:ro"
+      - "/dev/disk:/dev/disk:ro"
+    networks:
+      - app-network
+
 networks:
   app-network:
     external: true
     name: cactus-camila-network
+
