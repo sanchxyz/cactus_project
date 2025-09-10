@@ -238,3 +238,15 @@ def delete_product(product_id):
     flash('Producto eliminado exitosamente.', 'success')
     # Redirige de vuelta a la lista de eliminación
     return redirect(url_for('admin.delete_list'))
+
+
+@main.route('/auth_verify')
+def auth_verify():
+    """
+    Endpoint para verificación de autenticación desde nginx.
+    Devuelve 200 si el usuario está autenticado, 401 si no lo está.
+    """
+    if current_user.is_authenticated:
+        return '', 200  # Acceso permitido
+    else:
+        return '', 401  # No autenticado - redirigirá al login
