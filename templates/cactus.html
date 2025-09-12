@@ -18,21 +18,6 @@
 
                 <p class="product-description">{{ product.description }}</p>
 
-                <div class="product-specs">
-                    <div class="spec-item">
-                        <span class="spec-label">Riego:</span>
-                        <span class="spec-value">{{ product.watering.value.capitalize() }}</span>
-                    </div>
-                    <div class="spec-item">
-                        <span class="spec-label">Exposición:</span>
-                        <span class="spec-value">{{ product.sun_exposure.value.capitalize() }}</span>
-                    </div>
-                    <div class="spec-item">
-                        <span class="spec-label">Fertilizante:</span>
-                        <span class="spec-value">{{ product.fertilizer.capitalize() }}</span>
-                    </div>
-                </div>
-
                 {% if current_user.is_authenticated and current_user.role.name == 'admin' %}
                 <div style="margin-top: 10px;">
                     <a href="{{ url_for('admin.edit_product', product_id=product.id) }}" class="edit-button">Editar</a>
