@@ -21,13 +21,6 @@ __pycache__/
 instance/
 
 
-# ==================================
-# ARCHIVOS GENERADOS POR EL USUARIO
-# (Imágenes, documentos, etc.)
-# ==================================
-static/uploads/
-
-
 
 # ==================================
 # ARCHIVOS DE PRUEBAS (CACHÉ Y REPORTES)
@@ -59,5 +52,4 @@ htmlcov/
 *.log.*
 *.tmp
 *.bak
-migrations/
-tryDB.py
+
