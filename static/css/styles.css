@@ -13,7 +13,7 @@
     --glass-input-border: rgba(255, 255, 255, 0.2);
     --text-accent: #7ab67b;
     --text-home: #8ab4f8;
-    --border-radius: 28px;
+    --border-radius: 16px;
     --font-size-base: 1rem;
     --transition-speed: 0.3s;
 }
@@ -1019,7 +1019,6 @@ MD – Medium (768px - 991px)
         /* Estilos específicos para el box pequeño */
         grid-row: 2 / 3;
         padding: 10px;
-        display: none;
     }
 
 

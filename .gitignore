@@ -2,6 +2,13 @@
 # SECRETOS
 # ==================================
 .env
+.flaskenv
+
+# ==================================
+# SSL Y CONFIGURACIONES DE PRODUCCIÓN
+# ==================================
+certbot/
+nginx/
 
 # ==================================
 # ENTORNO VIRTUAL DE PYTHON
@@ -9,7 +16,6 @@
 .venv/
 venv/
 env/
-
 
 # ==================================
 # ARCHIVOS GENERADOS POR PYTHON Y FLASK
@@ -20,7 +26,10 @@ __pycache__/
 *.pyd
 instance/
 
-
+# ==================================
+# MIGRACIONES (NO SE GUARDAN EN EL REPO)
+# ==================================
+migrations/
 
 # ==================================
 # ARCHIVOS DE PRUEBAS (CACHÉ Y REPORTES)
