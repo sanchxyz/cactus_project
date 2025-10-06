@@ -63,3 +63,12 @@ htmlcov/
 *.bak
 
 nginx/
+
+# Archivos de desarrollo local que NO deben subirse
+config_local.py
+run_local.py
+DB/docker-compose.local.yml
+venv/
+config.py
+config.py
+config.py.backup
